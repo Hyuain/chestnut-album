@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 /.idea
 /album-data;D
+*.local
 
 # Ignore bundler config.
 /.bundle
