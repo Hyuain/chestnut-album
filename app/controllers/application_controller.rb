@@ -1,7 +1,14 @@
 class ApplicationController < ActionController::API
   # before_action :authenticate_user
 
-  private
+  def render_resource(resource)
+    return head :not_found if resource.nil?
+    if resource[:errors].nil?
+      render json: { data: resource }, status: 200
+    else
+      render json: { errors: resource.errors }, status: 422
+    end
+  end
 
   # def authenticate_user
   #   redirect_to root_path unless current_user
