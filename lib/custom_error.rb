@@ -1,5 +1,5 @@
 module CustomError
-  class MustSignInError < StandardError
+  class AuthorizationError < StandardError
     
   end
 end

@@ -1,11 +1,11 @@
 require 'custom_error'
 
 class ApplicationController < ActionController::API
-  rescue_from CustomError::MustSignInError, with: :render_must_sign_in
+  rescue_from CustomError::AuthorizationError, with: :render_must_sign_in
 
   def must_sign_in
     if current_user.nil?
-      raise CustomError::MustSignInError
+      raise CustomError::AuthorizationError
     end
   end
 
