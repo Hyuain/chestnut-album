@@ -4,9 +4,9 @@ class ApplicationController < ActionController::API
   def render_resource(resource)
     return head :not_found if resource.nil?
     if resource[:errors].nil?
-      render json: { data: resource }, status: 200
+      render json: resource, status: 200
     else
-      render json: { errors: resource.errors }, status: 422
+      render json: resource.errors, status: 422
     end
   end
 

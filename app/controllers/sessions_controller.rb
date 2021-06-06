@@ -16,13 +16,10 @@ class SessionsController < ApplicationController
     s.validate
     current_user = s.user.nil? ? (User.create open_id: s.open_id) : s.user
     session[:current_user_id] = current_user.id
-    p "----------------"
-    p session
     render_resource id: current_user.id
   end
 
   def test
-    p "intest!!!!!"
     p session[:current_user_id]
   end
 
