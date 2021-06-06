@@ -13,13 +13,14 @@ class PhotosController < ApplicationController
 
   def index
     get_image_helper = GetOssHelper.new
-    photos = Photo.order("created_at DESC").page(params[:page]).per(params[:size]).map { |item| { url: get_image_helper.get_temp_url(item.url) } }
-    render_resource page: params[:page].to_i, totalCounts: Photo.count, list: photos
+    album = Album.find_by_id params[:albumId]
+    photos = album.photos.order("created_at DESC").page(params[:page]).per(params[:size]).map { |item| { url: get_image_helper.get_temp_url(item.url) } }
+    render_resource page: params[:page].to_i, totalCounts: album.photos.count, list: photos
   end
 
   def create
     url = params[:url]
-    Photo.create url: url
+    Photo.create url: url, album_id: 1
     render_resource url: url
   end
 

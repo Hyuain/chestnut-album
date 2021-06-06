@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 2021_06_06_094320) do
 
   create_table "photos", force: :cascade do |t|
     t.string "url", null: false
+    t.bigint "album_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["album_id"], name: "index_photos_on_album_id"
   end
 
   create_table "user_album_relations", force: :cascade do |t|
