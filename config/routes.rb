@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get '/pre_oss_info', to: 'photos#get_pre_oss_info'
   resources :photos
   resources :albums
+  resources :user_album_relations
 end
