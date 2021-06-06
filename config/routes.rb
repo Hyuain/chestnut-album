@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   delete '/sign_out', to: 'sessions#destroy', as: :sign_out
   get '/test', to: 'sessions#test'
   get '/pre_oss_info', to: 'photos#get_pre_oss_info'
+  resources :photos
 end

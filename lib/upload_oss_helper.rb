@@ -8,7 +8,7 @@ class UploadOssHelper
     @time_out ||= 1
     @max_size = options[:max_size]
     @max_size ||= 15
-    @file_name = options[:file_name]
+    @filename = options[:filename]
   end
 
   def create_upload_params
@@ -39,7 +39,7 @@ class UploadOssHelper
   end
 
   def generate_file_key
-    "test/#{@file_name}"
+    "test/#{@filename}"
   end
 
 end
