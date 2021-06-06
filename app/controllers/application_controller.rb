@@ -1,5 +1,17 @@
+require 'custom_error'
+
 class ApplicationController < ActionController::API
-  # before_action :authenticate_user
+  rescue_from CustomError::MustSignInError, with: :render_must_sign_in
+
+  def must_sign_in
+    if current_user.nil?
+      raise CustomError::MustSignInError
+    end
+  end
+
+  def current_user
+    @current_user ||= User.find_by id: session[:current_user_id]
+  end
 
   def render_resource(resource)
     return head :not_found if resource.nil?
@@ -26,4 +38,8 @@ class ApplicationController < ActionController::API
   #   session[:current_user_id] = nil
   #   @_current_user = nil
   # end
+
+  def render_must_sign_in
+    render status: :unauthorized
+  end
 end

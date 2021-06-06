@@ -8,6 +8,4 @@ class Session
     @user ||= User.find_by open_id: open_id
   end
 
-
-
 end

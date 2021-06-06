@@ -2,6 +2,8 @@ require 'upload_oss_helper'
 require 'get_oss_helper'
 
 class PhotosController < ApplicationController
+  before_action :must_sign_in
+
   def get_pre_oss_info
     filename = params[:filename]
     filename ||= 'haha'
