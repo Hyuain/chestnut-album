@@ -1,4 +1,5 @@
 require 'upload_oss_helper'
+require 'get_oss_helper'
 
 class PhotosController < ApplicationController
   def get_pre_oss_info
@@ -9,7 +10,9 @@ class PhotosController < ApplicationController
   end
 
   def index
-    render_resource page: params[:page].to_i, totalCounts: Photo.count, list: Photo.page(params[:page]).per(params[:size])
+    get_image_helper = GetOssHelper.new
+    photos = Photo.order("created_at DESC").page(params[:page]).per(params[:size]).map { |item| { url: get_image_helper.get_temp_url(item.url) } }
+    render_resource page: params[:page].to_i, totalCounts: Photo.count, list: photos
   end
 
   def create
