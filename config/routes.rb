@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/test', to: 'sessions#test'
   get '/pre_oss_info', to: 'photos#get_pre_oss_info'
   resources :photos
+  resources :albums
 end
